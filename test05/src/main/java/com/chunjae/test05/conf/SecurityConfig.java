@@ -42,9 +42,7 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/idCheck")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/emailCheck")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
-                .requestMatchers(new AntPathRequestMatcher("/emp/**")).hasAnyRole("EMP","ADMIN")
-                .requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyRole("USER","EMP","ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/joinPro")).permitAll()
                 .anyRequest().authenticated());
         //로그인 설정
         http.formLogin()
@@ -52,15 +50,14 @@ public class SecurityConfig {
             .loginProcessingUrl("/auth")
             .usernameParameter("name")
             .passwordParameter("password")
-            .defaultSuccessUrl("/")
-            .failureForwardUrl("/");
+            .defaultSuccessUrl("/");
         //로그아웃 설정
          http.logout()
             .logoutUrl("/logout")
+            .invalidateHttpSession(true)
             .logoutSuccessUrl("/");
 
          http.cors().and().csrf().disable();
-         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
          return http.build();
     }
 

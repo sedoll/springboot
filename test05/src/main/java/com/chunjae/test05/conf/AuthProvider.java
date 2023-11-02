@@ -32,7 +32,7 @@ public class AuthProvider implements AuthenticationProvider {
         UsernamePasswordAuthenticationToken token;
         Euser userVo = userService.getByName(name);
 
-        if (userVo != null && passwordEncoder.matches(password, userVo.getPassword())) { // 일치하는 user 정보가 있는지 확인
+        if (userVo != null && passwordEncoder.matches(password, userVo.getPassword()) && userVo.getAct().equals("JOIN")) { // 일치하는 user 정보가 있는지 확인
             List<GrantedAuthority> roles = new ArrayList<>();
             if(userVo.getLev().equals("ADMIN")){
                roles.add(new SimpleGrantedAuthority("ADMIN")); // ADMIN 권한 부여

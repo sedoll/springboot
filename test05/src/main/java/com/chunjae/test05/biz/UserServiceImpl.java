@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getWithdraw(Long id) {
-        return userMapper.getWithdraw(id);
+    public int getWithdraw(String name) {
+        return userMapper.getWithdraw(name);
     }
 
     @Override
@@ -89,7 +89,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Euser getUserById(Long id) {
-        return null;
+    public Euser getUserById(Integer id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
+    public int updatePasswordNoChange(Euser euser) {
+        return userMapper.updatePasswordNoChange(euser);
     }
 }

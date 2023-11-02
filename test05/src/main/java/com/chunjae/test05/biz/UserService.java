@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     public List<Euser> getUserList();
     public Euser getUser(String name);
-    public int getWithdraw(Long id);
+    public int getWithdraw(String name);
     public int getActivate(String name);
     public int getDormant(String name);
     public Euser getByEmail(String email);
@@ -20,5 +20,6 @@ public interface UserService {
     public int updateLevel(String name, String lev);
     public int removeUser(String name);
     public PasswordEncoder passwordEncoder();
-    public Euser getUserById(Long id);
+    public Euser getUserById(Integer id);
+    public int updatePasswordNoChange(Euser euser);
 }

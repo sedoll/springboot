@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Euser {
-    private Long id;
+    private Integer id;
     private String name;
     private String password;
     private String username;

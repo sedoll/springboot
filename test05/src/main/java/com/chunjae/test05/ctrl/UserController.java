@@ -2,8 +2,6 @@ package com.chunjae.test05.ctrl;
 
 import com.chunjae.test05.biz.UserService;
 import com.chunjae.test05.entity.Euser;
-import com.chunjae.test05.exception.NoSuchDataException;
-import com.chunjae.test05.util.EmailSocket;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -47,10 +45,8 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String getUserInfo(Model model) { // User 테이블의 전체 정보를 보여줌
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getUserInfo(@RequestParam("id") Integer id, Model model) { // User 테이블의 전체 정보를 보여줌
         // token에 저장되어 있는 인증된 사용자의 id 값
-
         Euser user = userService.getUserById(id);
         user.setPassword(null); // password는 보이지 않도록 null로 설정
         model.addAttribute("user", user);
@@ -87,26 +83,28 @@ public class UserController {
     }
 
     @GetMapping("/update")
-    public String editPage(Model model) { // 회원 정보 수정 페이지
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Euser userVo = userService.getUserById(id);
+    public String editPage(@RequestParam("name") String name, Model model) { // 회원 정보 수정 페이지
+        Euser userVo = userService.getByName(name);
         model.addAttribute("user", userVo);
         return "user/updateUser";
     }
 
     @PostMapping("/update")
-    public String edit(Euser userVo) { // 회원 정보 수정
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userVo.setId(id);
-        userService.updateUser(userVo);
+    public String edit(Euser user) { // 회원 정보 수정
+        Euser euser = userService.getUserById(user.getId());
+        int cnt = 0;
+        if(user.getPassword().equals(euser.getPassword())){
+            cnt = userService.updatePasswordNoChange(user);
+        } else {
+            cnt = userService.updateUser(user);
+        }
         return "redirect:/";
     }
 
     @PostMapping("/delete")
-    public String withdraw(HttpSession session) { // 회원 탈퇴
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (id != null) {
-            userService.getWithdraw(id);
+    public String withdraw(@RequestParam("name") String name, HttpSession session) { // 회원 탈퇴
+        if (name != null) {
+            userService.getWithdraw(name);
         }
         SecurityContextHolder.clearContext(); // SecurityContextHolder에 남아있는 token 삭제
         return "redirect:/";

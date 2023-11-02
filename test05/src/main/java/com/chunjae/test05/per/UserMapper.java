@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserMapper {
     List<Euser> getUserList();
     Euser getUser(String name);
-    int getWithdraw(Long id);
+    int getWithdraw(String name);
     int getActivate(String name);
     int getDormant(String name);
     Euser getByEmail(String email);
@@ -20,5 +20,6 @@ public interface UserMapper {
     int updateUser(Euser euser);
     int updateLevel(String name, String lev);
     int removeUser(String name);
-    Euser getUserById(Long id);
+    Euser getUserById(Integer id);
+    int updatePasswordNoChange(Euser euser);
 }

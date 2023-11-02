@@ -9,7 +9,7 @@
     </select>
     <!-- 탈퇴하기 act:JOIN-활동중, DORMANT-휴면중, WITHDRAW-탈퇴중 -->
     <update id="getWithdraw">
-        update kuser set act='WITHDRAW' where id = #{id}
+        update kuser set act='WITHDRAW' where name = #{name}
     </update>
     <!-- 계정 활성화 -->
     <update id="getActivate">
@@ -45,6 +45,9 @@
     <!-- 회원정보수정 -->
     <update id="updateUser">
         UPDATE kuser SET password=#{password}, username=#{username}, address=#{address}, tel=#{tel} WHERE name = #{name}
+    </update>
+    <update id="updatePasswordNoChange">
+        UPDATE kuser SET username=#{username}, address=#{address}, tel=#{tel} WHERE name = #{name}
     </update>
     <update id="updateLevel">
         UPDATE kuser SET lev=#{lev} WHERE name = #{name}
