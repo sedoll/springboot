@@ -34,9 +34,13 @@
 
 <br><hr><br>
 
-# test05 : Spring Boot Gradle + WAR + JSP/JSTL + MariaDB + Mybatis + Lombok + Spring Security 6.0.8
+# test05 : Spring Boot 3.0.12 Gradle + WAR + JSP/JSTL + MariaDB + Mybatis + Lombok + Spring Security 6.0.8
 
 <br><hr><br>
 
-# test06 : Spring Boot Gradle + WAR + JSP/JSTL + MariaDB + Mybatis + Lombok + Spring Security 5.3.20
+# test06 : Spring Boot 2.7.17 Gradle + WAR + JSP/JSTL + MariaDB + Mybatis + Lombok + Spring Security 5.7.11
 
+
+<br><hr><br>
+
+# test07 : Spring Boot 2.7.17 Gradle + WAR + Thymeleaf + MariaDB + Mybatis + Lombok + Spring Security 5.7.11
