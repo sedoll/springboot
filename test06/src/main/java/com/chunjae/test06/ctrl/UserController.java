@@ -152,8 +152,8 @@ public class UserController {
 
     //회원정보수정 폼 로딩
     @GetMapping("/updateForm")
-    public String updateFormLoad(@RequestParam("name") String name, Model model){
-        Euser user = userService.getUser(name);
+    public String updateFormLoad(@RequestParam("id") Integer id, Model model){
+        Euser user = userService.getUserById(id);
         model.addAttribute("msg","회원정보를 수정하실 수 있습니다.");
         model.addAttribute("user", user);
         return "user/updateUser";
@@ -161,7 +161,13 @@ public class UserController {
 
     @PostMapping("/updateUserPro")
     public String updateUserPro(Euser user, Model model){
-        int cnt = userService.updateUser(user);
+        Euser euser = userService.getUserById(user.getId());
+        int cnt = 0;
+        if(user.getPassword().equals(euser.getPassword())){
+            cnt = userService.updatePasswordNoChange(user);
+        } else {
+            cnt = userService.updateUser(user);
+        }
         if(cnt == 0){
             throw new NoSuchDataException("No Update Process Data");
         }

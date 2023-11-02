@@ -20,5 +20,6 @@ public interface UserMapper {
     int updateUser(Euser euser);
     int updateLevel(String name, String lev);
     int removeUser(String name);
-    Euser getUserById(Long id);
+    Euser getUserById(Integer id);
+    int updatePasswordNoChange(Euser user);
 }

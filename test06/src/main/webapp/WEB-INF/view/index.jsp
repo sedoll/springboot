@@ -26,15 +26,12 @@
     </c:if>
     <c:if test="${not empty principal}">
         <h2>${principal}</h2>
-        <button type="button" onclick="location.href='/updateForm?name=${principal}'" class="pure-button pure-button-primary">수정하기</button>
+        <button type="button" onclick="location.href='/updateForm?id=${principal}'" class="pure-button pure-button-primary">수정하기</button>
         <form action="/logout" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <button type="submit" class="pure-button pure-button-primary">로그아웃</button>
         </form>
-        <form action="/delete" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-            <button type="submit" class="pure-button pure-button-primary">탈퇴하기</button>
-        </form>
+        <button type="button" onclick="location.href='/withdraw?id=${principal}'" class="pure-button pure-button-primary">탈퇴하기</button>
     </c:if>
 </body>
 </html>

@@ -20,5 +20,6 @@ public interface UserService {
     public int updateLevel(String name, String lev);
     public int removeUser(String name);
     public PasswordEncoder passwordEncoder();
-    public Euser getUserById(Long id);
+    public Euser getUserById(Integer id);
+    public int updatePasswordNoChange(Euser user);
 }

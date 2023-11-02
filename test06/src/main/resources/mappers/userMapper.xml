@@ -46,6 +46,9 @@
     <update id="updateUser">
         UPDATE kuser SET password=#{password}, username=#{username}, address=#{address}, tel=#{tel} WHERE name = #{name}
     </update>
+    <update id="updatePasswordNoChange">
+        UPDATE kuser SET username=#{username}, address=#{address}, tel=#{tel} WHERE name = #{name}
+    </update>
     <update id="updateLevel">
         UPDATE kuser SET lev=#{lev} WHERE name = #{name}
     </update>

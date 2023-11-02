@@ -31,7 +31,7 @@
 </div>
 <div class="l-content" style="width:1280px;margin:20px auto;">
     <h2>회원 가입</h2>
-    <form class="pure-form pure-form-aligned" action="${path0}/signup" method="post" onsubmit="return joinConfirm(this)">
+    <form class="pure-form pure-form-aligned" action="${path0}/joinPro" method="post" onsubmit="return joinConfirm(this)">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <fieldset>
             <legend>회원 가입 정보를 입력하시기 바랍니다.</legend>

@@ -89,7 +89,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Euser getUserById(Long id) {
-        return null;
+    public Euser getUserById(Integer id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
+    public int updatePasswordNoChange(Euser user) {
+        return userMapper.updatePasswordNoChange(user);
     }
 }
